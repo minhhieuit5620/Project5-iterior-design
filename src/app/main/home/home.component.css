@@ -1,0 +1,33 @@
+.inner{
+    padding:20px 20px 5px 20px;
+    background-color: #f3f3f3;
+    margin: 20px;
+    position: relative;
+    border-radius: 3px;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 5px #AAA;
+
+}
+.value{
+    position: absolute;
+    top:35px;
+    right:50px;
+}
+.more{
+    text-align: center;
+    padding-bottom: 5px;
+    /* background-color:red; */
+}
+.more a{
+    /* text-decoration: black; */
+    color: black;
+}
+.title{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.mn{
+    padding: 5px;
+   
+    border-radius: 10px;
+}

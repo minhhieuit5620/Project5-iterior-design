@@ -1,0 +1,353 @@
+
+  <!-- <app-left-sidebar></app-left-sidebar> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+  <style>
+    .form-control{
+      border: none;
+    }
+  </style>
+ <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelIdadd">
+        Thêm mới <i class="material-icons">add</i>
+      </button>
+      
+      <div class="navbar-form">
+        <div class="input-group no-border timkiem">
+          <input type="text" [(ngModel)]="keyword" name="keyword" ngDefaultControl  class="form-control" placeholder="Tìm kiếm...">
+
+          <!-- <ul>
+            <li *ngFor="let item of product$ |async ">
+              đây
+           
+            </li>
+          </ul> -->
+          <button type="submit" (click)="Search()" name="ok" class="btn btn-white btn-round btn-just-icon">
+            <i class="material-icons" >search</i>
+            <div class="ripple-container"></div>
+          </button>
+        </div>
+      </div>
+     
+
+      <!-- Modal -->
+      <div class="modal fade " id="modelIdadd" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Nhập thông tin tức mới</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+               
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">Tên tin tức</label>
+                  <input type="text" name="name" [(ngModel)]="news.nameNew" class="form-control">
+                </div>
+                
+               
+                 <div class="form-group">
+                  <!-- <label for="exampleFormControlFile1">Example file input</label> -->
+                  <label class="bmd-label-floating">Hình đại diện</label>
+                  <input type="text" name="Image" [(ngModel)]="news.avaterNew" id=""  class="form-control">
+                 
+                </div>
+               
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">Hình ảnh</label>
+                  <input type="text"name="hinhanh" [(ngModel)]="news.imageNew" class="form-control">
+                </div>
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">Loại tin tức</label>
+                  <input type="number" name="idCategoryNew" [(ngModel)]="news.idCategoryNew" class="form-control">
+                </div>
+                <div class="form-group bmd-form-group">
+                  <label for="textarea" >Chi tiết nội dung</label>
+                  <!-- <ckeditor  data="<p>Hello, world!</p>" ></ckeditor> -->
+
+                  <!-- <ckeditor  [(ngModel)]="selectedSP.description" name="ck" ngDefaultControl editor="Editor"></ckeditor> -->
+
+
+                  <!-- <box-ckeditor  name="Description"  [(ngModel)]="selectedSP.Description"></box-ckeditor> -->
+                 
+                   <!-- <textarea name="Description"  [(ngModel)]="selectedSP.description" id="textarea" class="form-control" rows="3" required="required"> <ckeditor>Description</ckeditor> </textarea> -->
+                    <ckeditor [editor]="editor" [(ngModel)]="selectedSP.descriptionNew"></ckeditor>
+                    
+                </div>
+                  
+                  <div class="form-group bmd-form-group">
+                    <label for="textarea" class=" bmd-label-floating">Chi tiết sản phẩm</label>
+                   <angular-editor [placeholder]="'Enter text here...'" [config]="editorConfig" [(ngModel)]="selectedSP.descriptionNew"></angular-editor>
+                      <!-- <textarea name="Description" [(ngModel)]="pro.description" id="textarea" class="form-control" rows="3" required="required"></textarea> -->
+                   
+                  </div>
+                  
+                  
+              
+                <!-- <label class="bmd-label-floating">Chọn hình ảnh </label>        
+                <input type="text"class="form-control" id="exampleFormControlFile1"> -->
+                    
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" (click)="addSP()" class="btn btn-primary " data-dismiss="modal">Save</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <script>
+        $('#exampleModal').on('show.bs.modal', event => {
+          var button = $(event.relatedTarget);
+          var modal = $(this);
+          // Use above variables to manipulate the DOM
+          
+        });
+      </script>
+        <div class="col-md-12">
+          <div class="card">
+            
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">Danh sách tin tức</h4>
+              <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+            </div>
+            <div class="card-body">
+              <div class="table-responsive table-hover">
+                <table class="table">
+                  <thead class=" text-primary">
+                    <th>
+                      STT
+                    </th>
+                    <th>
+                      Tiêu đề
+                    </th>
+                    <th>
+                    Hình ảnh đại diện
+                    </th>
+                    <!-- <th>
+                     Hình ảnh
+                    </th> -->
+                    <th>
+                     Loại
+                    </th>
+                   <!-- <th>
+                       Nội dung
+                   </th> -->
+                      <th class="text-center">
+                      Thao tác
+                      </th>
+                  </thead>
+                  <tbody>
+                  
+                    <tr  *ngFor="let item of datas ;let i=index">
+                      <td>
+                        {{i+1}}
+                      </td>
+                      <td [innerHTML]="item.nameNew">
+                        
+                        <!-- {{item.nameNew}} -->
+                      </td>
+                      <!-- <td>
+                        
+                        <img src="/assets/img/Image/Products/{{item.image}}" style="width: 60px;" alt="">                       
+                      </td> -->
+                      <td>
+                        <img src="/assets/img/Image/News/{{item.avaterNew}}" style="width: 100px;" alt=""> 
+                        <!-- {{item.avaterNew}} -->
+                      </td>
+                      <!-- <td class="text-primary">
+                        {{item.imageNew}}
+                         
+                                          
+                      </td> -->
+                      <td>
+                        {{item.idCategoryNew}}
+                      </td>
+                      <!-- <td>
+                        {{item.descriptionNew}}
+                      </td> -->
+                      <td>
+                        <!-- <input type="button" class="btn btn-info" value="Sửa"> -->
+                       
+
+                       
+                        <!-- Button trigger modal -->
+                        <button type="submit" class="btn btn-info btn-small" id="#Sua" data-toggle="modal" (click)="onselect(item)" data-target="#modelIdEdit" >
+                          <i  class="material-icons">edit</i>
+                        </button>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="modelIdEdit" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Sửa tin tức</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+                              <div class="modal-body "  id="txtBody">
+                                <div class="container-fluid">
+                                 
+                                  <div class="form-group bmd-form-group">
+                                    <label >Mã tin </label>
+                                    <input type="number" name="id" [(ngModel)]="selectedSP.idNew"  class="form-control">
+                                  </div>
+                                  
+                                  <div class="form-group">
+                                    <label>Tiêu đề</label>
+                                    <ckeditor [editor]="editor" [(ngModel)]="selectedSP.nameNew"></ckeditor>
+                                    <!-- <input type="text" name="name" [(ngModel)]="selectedSP.nameNew"  class="form-control"> -->
+                                  </div>
+                                  
+                                 
+                                   <div class="form-group">
+                                    <label>Hình ảnh đại diện</label>
+                                    <!-- <label for="exampleFormControlFile1">Example file input</label> -->
+                                    
+                                    <input type="text" name="avatarImage" [(ngModel)]="selectedSP.avaterNew"  class="form-control">
+                                   <!-- <img src="/assets/img/Image/Products/{{item.image}}" alt=""> -->
+                                  </div>
+                                 
+                                  <div class="form-group">
+                                    <label>Hình ảnh chi tiết</label>
+                                    <!-- <label for="exampleFormControlFile1">Example file input</label> -->
+                                    <input type="text" name="Image" [(ngModel)]="selectedSP.imageNew"  class="form-control">
+                                   <!-- <img src="/assets/img/Image/Products/{{item.image}}" alt=""> -->
+                                  </div>
+                                  <div class="form-group ">
+                                    <label >Loại tin</label>
+                                    <input type="number" name="loai" [(ngModel)]="selectedSP.idCategoryNew"class="form-control">
+                                  </div>
+                                  <!-- <div class="form-group bmd-form-group">
+                                    <label>Nội dung</label>
+                                    <input type="text"name="content" [(ngModel)]="selectedSP.descriptionNew" class="form-control">
+                                  </div> -->
+                                  
+                                    
+                                    <div class="form-group bmd-form-group">
+                                      <label for="textarea" >Chi tiết nội dung</label>
+                                      <!-- <ckeditor  data="<p>Hello, world!</p>" ></ckeditor> -->
+
+                                      <!-- <ckeditor  [(ngModel)]="selectedSP.description" name="ck" ngDefaultControl editor="Editor"></ckeditor> -->
+
+
+                                      <!-- <box-ckeditor  name="Description"  [(ngModel)]="selectedSP.Description"></box-ckeditor> -->
+                                     
+                                       <!-- <textarea name="Description"  [(ngModel)]="selectedSP.description" id="textarea" class="form-control" rows="3" required="required"> <ckeditor>Description</ckeditor> </textarea> -->
+                                        <ckeditor [editor]="editor" [(ngModel)]="selectedSP.descriptionNew"></ckeditor>
+                                        <!-- <angular-editor [placeholder]="'Enter text here...'" [config]="editorConfig" [(ngModel)]="selectedSP.descriptionNew"></angular-editor> -->
+                                    </div>
+                                
+                                
+                                  
+                                  
+                                  <!-- </form> -->
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" (click)="putpr(selectedSP.idNew)" class="btn btn-primary" data-dismiss="modal">Save</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <script>
+                          $('#exampleModal').on('show.bs.modal', event => {
+                            var button = $(event.relatedTarget);
+                            var modal = $(this);
+                            // $('#Sua').on('click',function(){
+                            //   var id=$(this).data('Id');
+                            //   GetDataById(id);
+                            // });
+                            // Use above variables to manipulate the DOM
+                            // $(document).ready(function() {
+                            //     //dòng này minh dùng để load data
+                               
+                            //     $('body').on('click', '#Sua', function() {
+                            //         var id = $(this).data('id');
+                            //         GetDataById(id);
+                            //     });
+                            // });
+                            
+                          });
+                        </script>
+                        
+                        
+                      
+                      <!-- <button type="submit" (click)="deleteSP(item.Id)" class="btn btn-danger" data-target="#modelIdDelete"> <i class="material-icons">delete</i></button> -->
+                      
+                        <!-- Button trigger modal -->
+                        <button type="submit" class="btn btn-danger btn-small" id="#Xoa" (click)="onselect(item)"  data-toggle="modal" data-target="#modelIdDelete">
+                          <i class="material-icons">delete</i>
+                        </button>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="modelIdDelete" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Lưu ý  </h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+                              <div class="modal-body" id="txtBody">
+                                <div class="container-fluid">
+                                 Bạn có muốn xóa tin tức {{selectedSP.idNew}}
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" (click)="deleteSP(selectedSP.idNew)"  class="btn btn-primary" data-dismiss="modal">Delete</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <script>
+                          $('#exampleModal').on('show.bs.modal', event => {
+                            var button = $(event.relatedTarget);
+                            var modal = $(this);
+                            // Use above variables to manipulate the DOM
+                            
+                          });
+                        </script>
+                        
+                        <!-- <input type="button" class="btn btn-danger" value="Xóa"> -->
+
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                  <li class="page-item" *ngFor="let item of pages"><a class="page-link" href="#"> {{item}} </a></li>
+
+                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+

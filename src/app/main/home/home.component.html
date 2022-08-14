@@ -1,0 +1,146 @@
+
+  <!-- <app-left-sidebar></app-left-sidebar> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+  <style>
+    .form-control{
+      border: none;
+    }
+  </style>
+ <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+            <div>
+            <h3 style="margin: 20px;margin-right: 300px;" >Chào mừng bạn đến với phần mềm quản trị HIEUHOUZZ  </h3>
+            </div>
+           
+            <div class="col-md-3">
+                <div class="inner user">
+                    <div class="title user">
+                        Người dùng
+                    </div>
+                    <i  class="material-icons mn" style="font-size:30px;background-color: #d92550 ;">person</i>
+                    <div class="value">
+                       <h3 style="color:#d92550 ">{{datas}} </h3>
+                    </div>
+                   <div  class="more">
+                    <a href="/users">Chi tiết</a>
+                   </div>
+                </div>
+             
+            </div> 
+            <div class="col-md-3">
+                <div class="inner product">
+                    <div class="title">
+                       Sản phẩm
+                    </div>
+                    <i class="material-icons mn" style="font-size:30px;background-color: #f7b924 ;">dashboard</i>
+                    <div class="value">
+                       <h3 style="color:#f7b924">{{pro}} </h3>
+                    </div>
+                   <div  class="more">
+                    <a href="/products">Chi tiết</a>
+                   </div>
+                </div>
+             
+            </div> 
+            <div class="col-md-3">
+                <div class="inner user">
+                    <div class="title">
+                       Dự án
+                    </div>
+                    <i class="material-icons mn" style="font-size:30px;background-color:#3ac47d ">note</i>
+                    <div class="value">
+                       <h3 style="color:#3ac47d ">{{project}} </h3>
+                    </div>
+                   <div  class="more">
+                    <a href="/projects">Chi tiết</a>
+                   </div>
+                </div>
+             
+            </div> 
+                <div class="col-md-3">
+                    <div class="inner user">
+                        <div class="title">
+                           Tin tức
+                        </div>
+                        <i class="material-icons mn " style="font-size:30px;background-color: red;">newspaper</i>
+                        <div class="value">
+                           <h3 style="color:red">{{news}} </h3>
+                        </div>
+                       <div  class="more">
+                        <a href="/news">Chi tiết</a>
+                       </div>
+                    </div>
+                 
+                </div> 
+                <div class="col-md-3">
+                    <div class="inner user">
+                        <div class="title">
+                            Đơn hàng
+                        </div>
+                        <i class="material-icons mn" style="font-size:30px;background-color: #007bff;">library_books</i>
+                        <div class="value">
+                           <h3 style="color: #007bff;">{{order}} </h3>
+                        </div>
+                       <div  class="more">
+                        <a href="/orders">Chi tiết</a>
+                       </div>
+                    </div>
+                 
+                </div> 
+                <div class="col-md-3">
+                    <div class="inner user">
+                        <div class="title">
+                            Liên hệ
+                        </div>
+                        <i class="material-icons mn" style="font-size:30px;background-color:#9c27b0">notifications</i>
+                        <div class="value">
+                           <h3 style="color:#9c27b0">{{contact}} </h3>
+                        </div>
+                       <div  class="more">
+                        <a href="/contact">Chi tiết</a>
+                       </div>
+                    </div>
+                 
+                </div> 
+                <div class="col-md-3">
+                    <div class="inner user">
+                        <div class="title">
+                            Loại sản phẩm
+                        </div>
+                        <i class="material-icons mn" style="font-size:30px;background-color:#fd7e14">content_paste</i>
+                        <div class="value">
+                           <h3 style="color:#fd7e14">{{cateProduct}} </h3>
+                        </div>
+                       <div  class="more">
+                        <a href="#">Chi tiết</a>
+                       </div>
+                    </div>
+                 
+                </div> 
+                <div class="col-md-3">
+                    <div class="inner user">
+                        <div class="title">
+                          Loại dự án
+                        </div>
+                        <i class="material-icons mn" style="font-size:30px; background-color: #da624a;">bubble_chart</i>
+                        <div class="value">
+                           <h3 style="color:#da624a">{{cateProject}} </h3>
+                        </div>
+                       <div  class="more">
+                        <a href="cateProjects">Chi tiết</a>
+                       </div>
+                    </div>
+                 
+                </div> 
+         
+           
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+

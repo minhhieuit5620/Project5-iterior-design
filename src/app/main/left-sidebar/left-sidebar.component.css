@@ -1,0 +1,9 @@
+a:visited{
+    background-color: #9c27b0;
+}
+li:active{
+    background-color: #9c27b0
+}
+li:visited{
+    background-color: #9c27b0
+}
